@@ -17,9 +17,9 @@ run     echo 'APT::Default-Release "trusty";' >> /etc/apt/apt.conf.d/01ubuntu
 run	apt-get update
 run	apt-get install wget -y --force-yes
 run	mkdir /var/lib/tsuru
-run	wget --no-check-certificate https://github.com/tsuru/basebuilder/tarball/master -O basebuilder.tar.gz
+run	wget --no-check-certificate https://github.com/victor-carvalho/basebuilder/tarball/wp -O basebuilder.tar.gz
 run	tar -xvf basebuilder.tar.gz -C /var/lib/tsuru --strip 1
 run	rm basebuilder.tar.gz
-run	cp /var/lib/tsuru/php/deploy /var/lib/tsuru
+run	cp /var/lib/tsuru/wordpress/deploy /var/lib/tsuru
 run	cp /var/lib/tsuru/php/interpretor/fpm5/php5_apt_preferences /etc/apt/preferences.d/php5
-run	/var/lib/tsuru/php/install
+run	/var/lib/tsuru/wordpress/install
