@@ -1,4 +1,4 @@
-#!/bin/bash -el
+#!/bin/bash -eL
 
 # Copyright 2015 basebuilder authors. All rights reserved.
 # Use of this source code is governed by a BSD-style
@@ -14,6 +14,11 @@ source ${SOURCE_DIR}/base/deploy
 echo "Starting application configuration"
 sudo -E python ${SOURCE_DIR}/php/deploy.py install
 python ${SOURCE_DIR}/php/deploy.py environment
-sudo mv /home/application/current/wp-content /shared/wp-content
+if [ -d /shared/wp-content ]
+then 
+    sudo rm -rf /home/application/current/wp-content
+else
+    sudo mv /home/application/current/wp-content /shared/wp-content
+fi
 sudo ln -sf /shared/wp-content /home/application/current/wp-content
 sudo chown -R ubuntu:ubuntu /shared/wp-content
